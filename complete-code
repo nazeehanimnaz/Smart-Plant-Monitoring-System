@@ -1,4 +1,3 @@
-#include<stdio.h>
 
 //define the soil moisture pin
 #define resistance A0 
@@ -21,19 +20,19 @@ void setup() {
 }
 
 void loop() {
-  int soil_resistance = analogread(A0); //store the resistance value from the soil moisture sensor
+  int soil_resistance = analogRead(A0); //store the resistance value from the soil moisture sensor
   Serial.println(soil_resistance); //print the value stored above
 
   if(resistance > 500) {
-    digitalwrite(2,HIGH); //red LED switches on
-    digitalwrite(3,LOW); //green LED switches off
-    digitalwrite(4,HIGH); //relay opens powering up the dc pump, allowing the flow of water
+    digitalWrite(2,HIGH); //red LED switches on
+    digitalWrite(3,LOW); //green LED switches off
+    digitalWrite(4,HIGH); //relay opens powering up the dc pump, allowing the flow of water
     Serial.println("Water Needed!"); //displays on the screen
   }
   else if(resistance <= 500) {
-    digitalwrite(2,LOW); //red LED switches off
-    digitalwrite(3,HIGH); //green LED switches on
-    digitalwrite(4,LOW); // relay closes cutting off the power to the dc pump, stopping the flow of water
+    digitalWrite(2,LOW); //red LED switches off
+    digitalWrite(3,HIGH); //green LED switches on
+    digitalWrite(4,LOW); // relay closes cutting off the power to the dc pump, stopping the flow of water
     Serial.println("Enough Water!"); //displays on the screen
   }
 }
